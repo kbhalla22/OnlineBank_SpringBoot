@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.userFront.domain.PrimaryAccount;
 import com.userFront.domain.SavingsAccount;
@@ -33,4 +34,12 @@ public class AccountController {
 		model.addAttribute("savingsAccount", savingsAccount);
 		return"savingsAccount";
 	}
+
+	@RequestMapping(value = "/deposit", method = RequestMethod.GET)
+    public String deposit(Model model) {
+        model.addAttribute("accountType", "");
+        model.addAttribute("amount", "");
+
+        return "deposit";
+    }
 }
