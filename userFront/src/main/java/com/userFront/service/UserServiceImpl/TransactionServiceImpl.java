@@ -68,14 +68,14 @@ public class TransactionServiceImpl implements TransactionService {
         savingsTransactionDao.save(savingsTransaction);
     }
     
-//    public void savePrimaryWithdrawTransaction(PrimaryTransaction primaryTransaction) {
-//        primaryTransactionDao.save(primaryTransaction);
-//    }
-//
-//    public void saveSavingsWithdrawTransaction(SavingsTransaction savingsTransaction) {
-//        savingsTransactionDao.save(savingsTransaction);
-//    }
-//    
+    public void savePrimaryWithdrawTransaction(PrimaryTransaction primaryTransaction) {
+        primaryTransactionDao.save(primaryTransaction);
+    }
+
+    public void saveSavingsWithdrawTransaction(SavingsTransaction savingsTransaction) {
+        savingsTransactionDao.save(savingsTransaction);
+    }
+    
 //    public void betweenAccountsTransfer(String transferFrom, String transferTo, String amount, PrimaryAccount primaryAccount, SavingsAccount savingsAccount) throws Exception {
 //        if (transferFrom.equalsIgnoreCase("Primary") && transferTo.equalsIgnoreCase("Savings")) {
 //            primaryAccount.setAccountBalance(primaryAccount.getAccountBalance().subtract(new BigDecimal(amount)));
