@@ -1,18 +1,22 @@
 package com.userFront.service.UserServiceImpl;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.userFront.dao.PrimaryAccountDao;
 import com.userFront.dao.PrimaryTransactionDao;
+import com.userFront.dao.RecipientDao;
 import com.userFront.dao.SavingsAccountDao;
 import com.userFront.dao.SavingsTransactionDao;
 import com.userFront.domain.PrimaryAccount;
 import com.userFront.domain.PrimaryTransaction;
+import com.userFront.domain.Recipient;
 import com.userFront.domain.SavingsAccount;
 import com.userFront.domain.SavingsTransaction;
 import com.userFront.domain.User;
@@ -38,10 +42,10 @@ public class TransactionServiceImpl implements TransactionService {
 	
 	@Autowired
 	private SavingsAccountDao savingsAccountDao;
-//	
-//	@Autowired
-//	private RecipientDao recipientDao;
-//	
+	
+	@Autowired
+	private RecipientDao recipientDao;
+	
 
 	public List<PrimaryTransaction> findPrimaryTransactionList(String username){
         User user = userService.findByUsername(username);
@@ -98,27 +102,27 @@ public class TransactionServiceImpl implements TransactionService {
             throw new Exception("Invalid Transfer");
         }
     }
-//    
-//    public List<Recipient> findRecipientList(Principal principal) {
-//        String username = principal.getName();
-//        List<Recipient> recipientList = recipientDao.findAll().stream() 			//convert list to stream
-//                .filter(recipient -> username.equals(recipient.getUser().getUsername()))	//filters the line, equals to username
-//                .collect(Collectors.toList());
-//
-//        return recipientList;
-//    }
-//
-//    public Recipient saveRecipient(Recipient recipient) {
-//        return recipientDao.save(recipient);
-//    }
-//
-//    public Recipient findRecipientByName(String recipientName) {
-//        return recipientDao.findByName(recipientName);
-//    }
-//
-//    public void deleteRecipientByName(String recipientName) {
-//        recipientDao.deleteByName(recipientName);
-//    }
+    
+    public List<Recipient> findRecipientList(Principal principal) {
+        String username = principal.getName();
+        List<Recipient> recipientList = recipientDao.findAll().stream() 			//convert list to stream
+                .filter(recipient -> username.equals(recipient.getUser().getUsername()))	//filters the line, equals to username
+                .collect(Collectors.toList());
+
+        return recipientList;
+    }
+
+    public Recipient saveRecipient(Recipient recipient) {
+        return recipientDao.save(recipient);
+    }
+
+    public Recipient findRecipientByName(String recipientName) {
+        return recipientDao.findByName(recipientName);
+    }
+
+    public void deleteRecipientByName(String recipientName) {
+        recipientDao.deleteByName(recipientName);
+    }
 //    
 //    public void toSomeoneElseTransfer(Recipient recipient, String accountType, String amount, PrimaryAccount primaryAccount, SavingsAccount savingsAccount) {
 //        if (accountType.equalsIgnoreCase("Primary")) {
