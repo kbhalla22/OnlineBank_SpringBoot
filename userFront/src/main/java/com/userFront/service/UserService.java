@@ -1,5 +1,6 @@
 package com.userFront.service;
 
+import java.util.List;
 import java.util.Set;
 
 import com.userFront.domain.User;
@@ -16,10 +17,15 @@ public interface UserService {
 
     boolean checkEmailExists(String email);
     
-   User createUser(User user,Set<UserRole> userRoles);
+    void save (User user);
     
-  
-    void saveUser (User user); 
+    User createUser(User user, Set<UserRole> userRoles);
+    
+    User saveUser (User user); 
+    
+    List<User> findUserList();
+
+	
     
    
 
